@@ -18,8 +18,12 @@ Python Pandas,plotly,matplotlib,sqlalchemy,json,mysql database,streamlit,Jupyter
 **Quickguide of application:**
 **Home :**
   Home menu lets users to view either All India data or statewise data ,default option is All India.Users can then view Transaction data or Users data yearwise from 2018 to 2023 and Quarterwise(Quarter1(Jan-March),Quarter2(April-June),Quarter3(July-Sep),Quarter4(Oct-Dec).Kindly note that Phonepe Data for Quarter4(Oct-Dec) for 2023 is not available in repository and hence dashboard will not display any details for that particular quarter for 2023.If transaction data is chosen quick gist of All India Phone Transactions count,All India Phone Transactions amount,category wise transaction count and amount is given. If user data is chosen gist of All India registered users,Top 10 states,Top 10 districts,Top 10 postal codes is displayed.Both Transaction data and users data is configured for each state when particular state is selected. Geographical display of Indian map is also provided with colorscaling for quick identification of statewise transaction count,transaction amount and Registered users
+  
 **Data Visualization:**  
-  Data Visualization menu lets user
+  Data Visualization menu provides insights to data through 6 predeifined options like least 10 states with Transaction count and amount,Transaction type vs transaction count,yearwise registered users for each state,which brand mobile brand users use phonepe most,Relation between transaction count and transaction amount etc., through Bar chart,Pie chart, Line chart and Scatter Plot
+
+**Data Reports:**
+  Data Reports let user view aggregated Transaction data, aggregated user data, Top District Transactions data, Top District users data in datafrmae format
 
 Data : https://github.com/PhonePe/pulse.git
 credits : Phonepe
