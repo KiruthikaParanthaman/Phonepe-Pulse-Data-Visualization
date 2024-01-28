@@ -27,8 +27,15 @@ Python Pandas,plotly,matplotlib,sqlalchemy,json,mysql database,streamlit,Jupyter
   Data Reports let user view aggregated Transaction data, aggregated user data, Top District Transactions data, Top District users data in datafrmae format
 
 **Approach:**
-  Data was cloned from Phonepe Github repository to local system and necessary files were imported 
-  Using OS module and user-defined extract data functions json datas were extracted statewise for every year and every quarter from phonepe github repository in local system and was converted to corresponding       dataframes
+
+  1. Data was cloned from Phonepe Github repository to local system and necessary files were imported 
+  2. Using OS module and user-defined extract data functions json datas were extracted statewise for every year and every quarter from phonepe github repository in local system and was converted to corresponding       dataframes
+  3. Extracted datas were stored in phonepe_project Mysql database usingsqlalc hemy and mysql.connector.connect
+  4. Geojson datas downloaded from "https://gist.githubusercontent.com/jbrobst/56c13bbbf9d97d187fea01ca62ea5112/raw/e388c4cae20aa53cb5090210a42ebb9b765c0a36/india_states.geojson" and necessary cleaning of data         like Renaming the state name corresponding to the geojson file undertaken
+  5. Data stored in mysql database is queried and datas retrieved to display the insights like Category wise transaction break-up,Top 10 Transaction State,All India Registerde phonepe users in dashbaord
+  6. Using plotly express px.choropleth option India political map was displayed with corredponding transaction/user data
+  7. Data insights provided through varied data visualization charts like Bar chart, Line chart, Scatter plot, Pie chart using plotly library
+  8. Aggregated transaction,user,district transaction,district user datas can be viewed as dataframe in Data Reports option
   
   
 Data : https://github.com/PhonePe/pulse.git
