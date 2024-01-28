@@ -9,8 +9,17 @@ This Phonepe Dashboard is inspired from Pulse Dashboard by Phonepe which through
 5. Fetch the data from the MySQL database to display in the dashboard.
 6. Provide at least 10 different dropdown options for users to select different facts and figures to display on the dashboard.
 
-Final Output:
+**Final Output:**
 ![phonepe app scrnshot1](https://github.com/KiruthikaParanthaman/Phonepe-Pulse-Data-Visualization/assets/141828622/0b121d0a-1c70-402e-8c76-da1e513af36e)
+
+**Tools used:**
+Python Pandas,plotly,matplotlib,sqlalchemy,json,mysql database,streamlit,Jupyter
+
+**Quickguide of application:**
+**Home :**
+  Home menu lets users to view either All India data or statewise data ,default option is All India.Users can then view Transaction data or Users data yearwise from 2018 to 2023 and Quarterwise(Quarter1(Jan-March),Quarter2(April-June),Quarter3(July-Sep),Quarter4(Oct-Dec).Kindly note that Phonepe Data for Quarter4(Oct-Dec) for 2023 is not available in repository and hence dashboard will not display any details for that particular quarter for 2023.If transaction data is chosen quick gist of All India Phone Transactions count,All India Phone Transactions amount,category wise transaction count and amount is given. If user data is chosen gist of All India registered users,Top 10 states,Top 10 districts,Top 10 postal codes is displayed.Both Transaction data and users data is configured for each state when particular state is selected. Geographical display of Indian map is also provided with colorscaling for quick identification of statewise transaction count,transaction amount and Registered users
+**Data Visualization:**  
+  Data Visualization menu lets user
 
 Data : https://github.com/PhonePe/pulse.git
 credits : Phonepe
