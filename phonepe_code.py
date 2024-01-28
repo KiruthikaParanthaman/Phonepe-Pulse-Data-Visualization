@@ -167,7 +167,7 @@ def extract_top_user_data(path):
 
 # Function to display Bar chart for Transaction category
 def bar_chart(year,quesn):
-    engine = create_engine("mysql+pymysql://root:%s@localhost:3306/phonepe_project" % quote('Nila@3110'),echo = True)
+    engine = create_engine("mysql+pymysql://root:%s@localhost:3306/phonepe_project" % quote('**pwd**'),echo = True)
     conn = engine.connect()
     query = text(f'''SELECT Transaction_type,SUM(Transaction_count) AS Total_txn_count,
                     SUM(Transaction_amount) AS Total_txn_amount
@@ -193,7 +193,7 @@ def bar_chart(year,quesn):
 #Function to display line chart for Registered users yearwise
 def line_chart(state_name):
     state_str = str(state_name)
-    engine = create_engine("mysql+pymysql://root:%s@localhost:3306/phonepe_project" % quote('Nila@3110'),echo = True)
+    engine = create_engine("mysql+pymysql://root:%s@localhost:3306/phonepe_project" % quote('**pwd**'),echo = True)
     conn = engine.connect()
     query = text('''SELECT Year,SUM(Registered_users) as Total_Registered_users FROM phonepe_project.agg_user_data
                     WHERE State = '{}' GROUP BY Year, State'''.format(state_str))
@@ -203,7 +203,7 @@ def line_chart(state_name):
 
 #Function to display pie chart
 def pie_chart(option):
-    engine = create_engine("mysql+pymysql://root:%s@localhost:3306/phonepe_project" % quote('Nila@3110'),echo = True)
+    engine = create_engine("mysql+pymysql://root:%s@localhost:3306/phonepe_project" % quote('**pwd**'),echo = True)
     conn = engine.connect()
     query = text('''SELECT Brand,SUM(user_count) as Total_user_count FROM phonepe_project.agg_brand_data
                 GROUP BY Brand''')
@@ -219,7 +219,7 @@ def pie_chart(option):
 
 # Function to display scatter plot chart
 def scatter_chart(year):
-    engine = create_engine("mysql+pymysql://root:%s@localhost:3306/phonepe_project" % quote('Nila@3110'),echo = True)
+    engine = create_engine("mysql+pymysql://root:%s@localhost:3306/phonepe_project" % quote('**pwd**'),echo = True)
     conn = engine.connect()
     query = text('''SELECT State,Year,District_name,sum(Transaction_count) AS District_txn_count, SUM(Transaction_amount) as District_txn_amount
                     FROM phonepe_project.top_dist_txn where year = '{}' GROUP BY District_name,State'''.format(year))
@@ -252,10 +252,10 @@ def format_comma(num):
 
 #Function to create table and insert data into mysql
 def create_mysql_table():
-    mydb = mysql.connector.connect(host="localhost",user="root",password="Nila@3110")
+    mydb = mysql.connector.connect(host="localhost",user="root",password="**pwd**")
     mycursor = mydb.cursor()
     mycursor.execute("CREATE DATABASE phonepe_project")
-    mydb = mysql.connector.connect(host="localhost",user="root",password="Nila@3110",database = "phonepe_project")
+    mydb = mysql.connector.connect(host="localhost",user="root",password="**pwd**",database = "phonepe_project")
     mycursor = mydb.cursor()
     mycursor.execute('''CREATE TABLE agg_txn_data (State VARCHAR(255),Year INT,Quarter INT,
                         Transaction_type VARCHAR(255),Transaction_count INT,Transaction_amount DECIMAL(19,2))''') 
@@ -296,7 +296,7 @@ def into_sql():
     map_user_path = "\\map\\user\\hover\\country\\india\\state"
     top_txn_path = "\\top\\transaction\\country\\india\\state"
     top_user_path = "\\top\\user\\country\\india\\state"
-    engine = create_engine("mysql+pymysql://root:%s@localhost:3306/phonepe_project" % quote('Nila@3110'),echo = True)
+    engine = create_engine("mysql+pymysql://root:%s@localhost:3306/phonepe_project" % quote('**pwd**'),echo = True)
     df = extract_agg_txn_data(file_path+aggregated_txn_path)
     agg_txn_data_df = rename_state_name(df) 
     agg_txn_data_df.to_sql('agg_txn_data', con=engine, if_exists='append', index=False)
@@ -325,7 +325,7 @@ def into_sql():
 
 #function to check existence of database in mysql database
 def sql_db_check():
-    mydb = mysql.connector.connect(host="localhost",user="root",password="Nila@3110")
+    mydb = mysql.connector.connect(host="localhost",user="root",password="**pwd**")
     mycursor = mydb.cursor()
     try:
         mycursor.execute("USE phonepe_project")
@@ -348,7 +348,7 @@ def sql_data_insertion():
 
 #Function to get data from mysql database
 def data_from_mysql(table_name,year=2018,quarter=1,State=0):
-    engine = create_engine("mysql+pymysql://root:%s@localhost:3306/phonepe_project" % quote('Nila@3110'),echo = True)
+    engine = create_engine("mysql+pymysql://root:%s@localhost:3306/phonepe_project" % quote('**pwd**'),echo = True)
     conn = engine.connect()
     if table_name == "agg_txn_data_df":
         query = text(f'''SELECT State,Quarter,Year,SUM(Transaction_count) as Total_txn_count,
@@ -431,7 +431,7 @@ def choropleth_map(table_name,year,quarter):
 
 #Function to retrieve category values from sql dataframe
 def category_values(type,year,quarter):
-    engine = create_engine("mysql+pymysql://root:%s@localhost:3306/phonepe_project" % quote('Nila@3110'),echo = True)
+    engine = create_engine("mysql+pymysql://root:%s@localhost:3306/phonepe_project" % quote('**pwd**'),echo = True)
     conn = engine.connect()
     if type == "Transaction_count":
         query = text(f'''SELECT Year,Quarter,Transaction_type,Sum(Transaction_count) AS category_txn_count FROM phonepe_project.agg_txn_data
