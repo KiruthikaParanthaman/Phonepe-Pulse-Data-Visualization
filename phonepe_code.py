@@ -336,15 +336,9 @@ def sql_db_check():
 
 #Function call to Create Table and insert data into Mysql database
 def sql_data_insertion():
-    value = sql_db_check()
-    if value == 1:
-        flag = 0 # Table already exists
-    else:
-        sql_tables = create_mysql_table()
-        insert_data = into_sql()
-        flag = 1 # Table created and data inserted
-    return flag
-        
+    insert_data = into_sql()
+    flag = 1 # Table created and data inserted
+    return True
 
 #Function to get data from mysql database
 def data_from_mysql(table_name,year=2018,quarter=1,State=0):
@@ -464,6 +458,12 @@ menu_bar = option_menu(None, ["Home","Data Visualization","Data Reports"],
         "nav-link-selected": {"background-color": "Purple"}
     })   
 if menu_bar == "Home":
+    sqldb = sql_db_check()
+    if sqldb == 0:
+        create_mysql_table()
+        sql_data_insertion()
+    else:
+        pass    
     col1, col2 = st.columns([2, 2])
     with col1:
         col1_1,col1_2,col1_3 = st.columns([1,2,1])
