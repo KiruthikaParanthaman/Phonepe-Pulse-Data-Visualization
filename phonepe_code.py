@@ -337,7 +337,6 @@ def sql_db_check():
 #Function call to Create Table and insert data into Mysql database
 def sql_data_insertion():
     insert_data = into_sql()
-    flag = 1 # Table created and data inserted
     return True
 
 #Function to get data from mysql database
@@ -439,9 +438,12 @@ def category_values(type,year,quarter):
         mysql_data = pd.read_sql(query, con=conn)
     return mysql_data 
 
-#Main Function
-# x = sql_data_insertion()
-# print(x)
+sqldb = sql_db_check()
+if sqldb == 0:
+    create_mysql_table()
+    sql_data_insertion()
+else:
+    pass 
 
 
 #Streamlit page configuration
@@ -458,12 +460,6 @@ menu_bar = option_menu(None, ["Home","Data Visualization","Data Reports"],
         "nav-link-selected": {"background-color": "Purple"}
     })   
 if menu_bar == "Home":
-    sqldb = sql_db_check()
-    if sqldb == 0:
-        create_mysql_table()
-        sql_data_insertion()
-    else:
-        pass    
     col1, col2 = st.columns([2, 2])
     with col1:
         col1_1,col1_2,col1_3 = st.columns([1,2,1])
@@ -557,7 +553,7 @@ if menu_bar == "Home":
                 tab1, tab2 = st.tabs(["Users","Postal"])
                 with tab1:
                     df = data_from_mysql("agg_state_user_data_df",year,Quarter[3],state_option)
-                    user_txn = format_number(int(df['Registered_users']),locale='en_IN')
+                    user_txn = format_number(int(df['Registered_users'].sum()),locale='en_IN')
                     st.markdown(f"<h4 style='text-align: left; color: purple;'>{state_option} Phonepe Registered Users</h4>", unsafe_allow_html=True)
                     st.markdown(f"<h5 style='text-align: left; color: #28282B ;'>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{user_txn}</h5>", unsafe_allow_html=True)
                     st.markdown("<h5 style='text-align: left; color: purple;'>Top 10 Districts</h5>", unsafe_allow_html=True)
